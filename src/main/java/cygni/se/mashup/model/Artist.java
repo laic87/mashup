@@ -1,6 +1,7 @@
 package cygni.se.mashup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -10,7 +11,8 @@ public class Artist {
     private String name;
     private String country;
     private Relation[] relations;
-    private ReleaseGroup[] releaseGroups;
+    @JsonProperty("release-groups")
+    private ReleaseGroup[] release_groups;
 
     public String getName() {
         return name;
@@ -37,11 +39,11 @@ public class Artist {
     }
 
     public ReleaseGroup[] getReleaseGroups() {
-        return releaseGroups;
+        return release_groups;
     }
 
-    public void setReleaseGroups(ReleaseGroup[] releaseGroups) {
-        this.releaseGroups = releaseGroups;
+    public void setReleaseGroups(ReleaseGroup[] release_groups) {
+        this.release_groups = release_groups;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Artist {
                 "name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", relations=" + Arrays.toString(relations) +
-                ", releaseGroups=" + Arrays.toString(releaseGroups) +
+                ", releaseGroups=" + Arrays.toString(release_groups) +
                 '}';
     }
 

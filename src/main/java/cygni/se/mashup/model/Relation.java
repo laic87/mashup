@@ -5,13 +5,6 @@ public class Relation {
     private String type;
     private URL url;
 
-    public Relation() {}
-
-    public Relation(String type, URL url) {
-        this.type = type;
-        this.url = url;
-    }
-
     public String getType() {
         return type;
     }
