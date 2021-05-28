@@ -27,12 +27,12 @@ public class ArtistController {
 
     @GetMapping(path = "/{mbid}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> getArtist(@PathVariable String mbid) {
+    public ResponseEntity<Artist> getArtist(@PathVariable String mbid) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
-        ArtistDTO artist = artistServiceImpl.getArtistInfo(mbid);
-        return ResponseEntity.ok().headers(headers).body(artist.toString());
+        Artist artist = artistServiceImpl.getArtistInfo(mbid);
+        return ResponseEntity.ok().headers(headers).body(artist);
     }
 }
 

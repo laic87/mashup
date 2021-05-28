@@ -1,6 +1,5 @@
 package cygni.se.mashup.service;
 
-import cygni.se.mashup.dto.ArtistDTO;
 import cygni.se.mashup.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,10 @@ public class ArtistServiceImpl implements ArtistService {
 
     final String BASE_URL = "http://musicbrainz.org/ws/2";
     final String ARTIST = "/artist/";
-    final String INC = "/inc=url-rels+release-groups";
+    final String INC = "inc=url-rels+release-groups";
+    final String QUERY_FMT ="?fmt=json&";
+    final String ARTIST_INC = BASE_URL + ARTIST + "{mbid}" + QUERY_FMT + INC;
+   // http://musicbrainz.org/ws/2/artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da?fmt=json&inc=url-rels+release-groups
 
     @Autowired
     private RestTemplate restTemplate;
@@ -27,16 +29,13 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistDTO getArtistInfo(String mbid) {
-        ArtistDTO artistDTO = new ArtistDTO();
-        Artist artist = restTemplate.getForObject(BASE_URL + ARTIST + mbid + INC, Artist.class);
-        if(artist != null) {
-            artistDTO.setName(artist.getName());
-            artistDTO.setCountry(artist.getCountry());
-            System.out.println(artistDTO.toString());
-            return artistDTO;
+    public Artist getArtistInfo(String mbid) {
+        Artist artist = restTemplate.getForObject(ARTIST_INC, Artist.class, mbid);
+        if (artist != null) {
+            return artist;
         }
-        return null;
+        // ToDo: need to send exception
+       return null;
     }
 
     private void mapToDto() {

@@ -2,19 +2,14 @@ package cygni.se.mashup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Artist {
     private String name;
     private String country;
     private Relation[] relations;
-
-    public Artist() { }
-
-    public Artist(String name, String country, Relation[] relations) {
-        this.name = name;
-        this.country = country;
-        this.relations = relations;
-    }
 
     public String getName() {
         return name;
@@ -45,8 +40,23 @@ public class Artist {
         return "Artist{" +
                 "name='" + name + '\'' +
                 ", country='" + country + '\'' +
-                ", relation=" + relations +
+                ", relations=" + relations +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(name, artist.name) && Objects.equals(country, artist.country) && Arrays.equals(relations, artist.relations);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, country);
+        result = 31 * result + Arrays.hashCode(relations);
+        return result;
     }
 }
 
