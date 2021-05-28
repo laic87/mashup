@@ -10,6 +10,7 @@ public class Artist {
     private String name;
     private String country;
     private Relation[] relations;
+    private ReleaseGroup[] releaseGroups;
 
     public String getName() {
         return name;
@@ -35,12 +36,21 @@ public class Artist {
         this.relations = relations;
     }
 
+    public ReleaseGroup[] getReleaseGroups() {
+        return releaseGroups;
+    }
+
+    public void setReleaseGroups(ReleaseGroup[] releaseGroups) {
+        this.releaseGroups = releaseGroups;
+    }
+
     @Override
     public String toString() {
         return "Artist{" +
                 "name='" + name + '\'' +
                 ", country='" + country + '\'' +
-                ", relations=" + relations +
+                ", relations=" + Arrays.toString(relations) +
+                ", releaseGroups=" + Arrays.toString(releaseGroups) +
                 '}';
     }
 

@@ -1,27 +1,38 @@
 package cygni.se.mashup.model;
 
 public class ReleaseGroup {
+    private String id;
+    private String title;
 
-    private Artist artist;
-
-    public ReleaseGroup() {}
-
-    public ReleaseGroup(Artist artist) {
-        this.artist = artist;
+    public ReleaseGroup() {
     }
 
-    public Artist getArtist() {
-        return artist;
+    public ReleaseGroup(String id, String title) {
+        this.id = id;
+        this.title = title;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
     public String toString() {
         return "ReleaseGroup{" +
-                "artist=" + artist +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }
