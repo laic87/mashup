@@ -7,12 +7,11 @@ public class WikidataResponse {
     private String site;
     private String title;
 
+    public WikidataResponse() { }
+
     public WikidataResponse(String site, String title) {
         this.site = site;
         this.title = title;
-    }
-
-    public WikidataResponse() {
     }
 
     public String getSite() {

@@ -1,7 +1,5 @@
 package cygni.se.mashup.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class ReleaseGroup {
     private String id;
     private String title;
