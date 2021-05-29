@@ -53,7 +53,6 @@ public class ArtistServiceImpl implements ArtistService {
         HashMap<String, HashMap>  hashMapHashMap = (HashMap<String, HashMap>) restTemplate.getForObject(WD_QUERY_ACTION_IDS_FMT_PROPS, Object.class, id);
         HashMap<String, HashMap>  entitiesHashMap = hashMapHashMap.get("entities");
         HashMap<String, HashMap> sitelinks = (HashMap<String, HashMap>) entitiesHashMap.get(id).get("sitelinks");
-        HashMap<String, HashMap> enWikiHashMap = sitelinks.get("enwiki");
         String site = sitelinks.get("enwiki").get("site").toString();
         String title = sitelinks.get("enwiki").get("title").toString();
         WikidataResponse wikidataResponse = new WikidataResponse(site, title);
@@ -62,11 +61,10 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public WikipediaResponse getWikipediaByTitle(String title) {
-        HashMap<String, HashMap> hashMapHashMap = (HashMap<String, HashMap>) restTemplate.getForObject(WP_BASE_URL, Object.class);
+        HashMap<String, HashMap> hashMapHashMap = (HashMap<String, HashMap>) restTemplate.getForObject(WP_BASE_URL, HashMap.class);
         HashMap<String, HashMap> queryHashMap = hashMapHashMap.get("query");
         HashMap<String, HashMap> pages = queryHashMap.get("pages");
-        HashMap<String, HashMap> pageId = pages.get("21231");
-        String description = pageId.get("extract").toString();
+        String description = pages.get("21231").get("extract").toString();
         System.out.println("This will call the wikipedia API");
         //return wikipediaResponse;
         WikipediaResponse wikipediaResponse = new WikipediaResponse(description);
