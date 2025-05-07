@@ -52,6 +52,6 @@ public class ArtistServiceImpl implements ArtistService{
                     String resource = relation.getUrl().getResource();
                     return resource.substring(resource.lastIndexOf('/') + 1);
                 })
-                .orElse(null); // returnerar null om ingen matchande typ hittades
+                .orElse(null);
     }
 }
