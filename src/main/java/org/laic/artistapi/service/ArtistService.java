@@ -1,9 +1,9 @@
 package org.laic.artistapi.service;
 
-import org.laic.artistapi.model.MusicBrainzArtistResponse;
+import org.laic.artistapi.model.ArtistResponse;
 
 import java.util.UUID;
 
 public interface ArtistService {
-    MusicBrainzArtistResponse getArtistById(UUID mbid);
+    ArtistResponse getArtistById(UUID mbid);
 }

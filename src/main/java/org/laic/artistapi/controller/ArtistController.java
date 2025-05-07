@@ -1,8 +1,6 @@
 package org.laic.artistapi.controller;
 
-import org.laic.artistapi.client.MusicBrainzClient;
-import org.laic.artistapi.model.MusicBrainzArtistResponse;
-import org.laic.artistapi.service.ArtistService;
+import org.laic.artistapi.model.ArtistResponse;
 import org.laic.artistapi.service.ArtistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +22,9 @@ public class ArtistController {
         this.artistService = artistService;
     }
 
-
     @GetMapping("/{mbid}")
-    public ResponseEntity<String> getArtist(@PathVariable UUID mbid) {
-        var response = artistService.fetchArtist(mbid);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<ArtistResponse> getArtist(@PathVariable UUID mbid) {
+        var artistResponse = artistService.getArtistById(mbid);
+        return ResponseEntity.ok(artistResponse);
     }
-
 }
